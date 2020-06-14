@@ -8,7 +8,11 @@ app.set("views engine", "ejs");
 app.set("views", "./views");
 
 io.on("connection", (socket) => {
-  console.log("Has new user conection: ", socket.id);
+  console.log("[user][connected]: ", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("[user][disconnected]: ", socket.id);
+  });
 });
 
 app.get("/", (req, res) => {
